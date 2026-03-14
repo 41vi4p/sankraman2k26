@@ -253,7 +253,7 @@ function initNavigation() {
     // Add shadow on scroll
     window.addEventListener('scroll', debounce(() => {
         if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
+            navbar.style.boxShadow = '0 12px 28px rgba(6, 2, 15, 0.42)';
         } else {
             navbar.style.boxShadow = 'none';
         }
@@ -306,7 +306,7 @@ function initScrollAnimations() {
 
     // Observe elements with fade-in animation
     const animatedElements = document.querySelectorAll(
-        '.about-card, .event-card, .benefit-item, .reward-card'
+        '.about-card, .event-card, .benefit-item, .reward-card, .journey-stage'
     );
 
     animatedElements.forEach(element => {
@@ -749,7 +749,7 @@ function initClickSparks() {
     const secondaryButtons = document.querySelectorAll('.btn-secondary');
     secondaryButtons.forEach(button => {
         new ClickSpark(button, {
-            sparkColor: '#6366f1',
+            sparkColor: '#6495ed',
             sparkSize: 10,
             sparkRadius: 18,
             sparkCount: 8,
@@ -762,7 +762,7 @@ function initClickSparks() {
     const cards = document.querySelectorAll('.about-card, .event-card, .reward-card');
     cards.forEach(card => {
         new ClickSpark(card, {
-            sparkColor: '#ec4899',
+            sparkColor: '#e6e6fa',
             sparkSize: 8,
             sparkRadius: 15,
             sparkCount: 6,
@@ -776,7 +776,7 @@ function initClickSparks() {
     const logo = document.querySelector('.logo');
     if (logo) {
         new ClickSpark(logo, {
-            sparkColor: '#6366f1',
+            sparkColor: '#6495ed',
             sparkSize: 10,
             sparkRadius: 25,
             sparkCount: 12,
