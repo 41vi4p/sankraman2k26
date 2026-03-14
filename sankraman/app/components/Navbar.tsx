@@ -45,16 +45,10 @@ export default function Navbar() {
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, '#hero')}
-            className="flex items-center gap-3 group"
+            className="flex items-center group"
           >
-            <div className="relative w-10 h-10 flex-shrink-0">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#00E5FF] to-[#7B2FBE] opacity-80 blur-[6px] group-hover:blur-[10px] transition-all duration-300" />
-              <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-[#00E5FF] to-[#7B2FBE] flex items-center justify-center font-black text-white text-sm">
-                P
-              </div>
-            </div>
-            <div className="hidden sm:block">
-              <div className="font-black text-lg tracking-widest text-white leading-none">PRAKALP</div>
+            <div>
+              <div className="font-black text-lg tracking-widest text-white leading-none">PRAKALP 4.0</div>
               <div className="text-[10px] tracking-[0.35em] text-[#00E5FF] uppercase">Sankraman</div>
             </div>
           </a>

@@ -111,6 +111,16 @@ export default function HeroSection() {
           <span className="text-[#1E90FF]">Project Cell</span>
         </motion.div>
 
+        {/* Presents */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="text-white/40 text-xs tracking-[0.45em] uppercase font-light mb-3"
+        >
+          Presents
+        </motion.p>
+
         {/* PRAKALP 4.0 — chrome metallic */}
         <h1 className="font-black leading-none tracking-tight mb-1 hero-title"
           style={{ fontSize: 'clamp(3.5rem, 14vw, 10rem)' }}
@@ -164,24 +174,7 @@ export default function HeroSection() {
           </button>
         </motion.div>
 
-        {/* Stat counters */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2.8 }}
-          className="flex gap-8 mt-14 text-center"
-        >
-          {[
-            { num: '3', label: 'Councils' },
-            { num: '500+', label: 'Participants' },
-            { num: '10+', label: 'Events' },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="text-2xl md:text-3xl font-black chrome-text">{s.num}</div>
-              <div className="text-[10px] tracking-[0.25em] uppercase text-white/40 mt-0.5">{s.label}</div>
-            </div>
-          ))}
-        </motion.div>
+
       </motion.div>
 
       {/* Scroll cue */}

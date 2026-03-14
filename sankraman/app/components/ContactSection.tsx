@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 export default function ContactSection() {
@@ -8,7 +8,7 @@ export default function ContactSection() {
   const inView = useInView(ref, { once: true, margin: '-60px' });
 
   return (
-    <section id="contact" className="section-base min-h-[60vh]" ref={ref}>
+    <section id="contact" className="relative w-full flex flex-col items-center justify-center py-24 px-6 overflow-hidden" ref={ref}>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
