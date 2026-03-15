@@ -164,6 +164,14 @@ canvas {
   padding: var(--space-24) var(--space-6);
 }
 
+/* ─── Timeline spacing ─── */
+#journey .phase-card-left {
+  padding-right: calc(50% + var(--space-12));
+}
+#journey .phase-card-right {
+  padding-left: calc(50% + var(--space-12));
+}
+
 /* ─── Focus visible utility ─── */
 .focus-ring:focus-visible {
   outline: 2px solid var(--accent-cyan);

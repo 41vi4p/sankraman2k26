@@ -36,9 +36,15 @@ export default function Navbar() {
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           scrolled
-            ? 'py-3 bg-[#020008]/80 backdrop-blur-xl'
+            ? 'py-3'
             : 'py-5 bg-transparent'
         }`}
+        style={scrolled ? {
+          background: 'rgba(2, 0, 8, 0.4)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.3)',
+        } : undefined}
       >
         <div className="w-full px-10 flex items-center justify-between">
           {/* Logo */}
@@ -54,7 +60,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop nav links — centered */}
-          <div className="hidden md:flex items-center gap-2 glass-card px-6 py-2.5 rounded-full absolute left-1/2 -translate-x-1/2">
+          <div className="hidden md:flex items-center gap-2 px-6 py-2.5 rounded-full absolute left-1/2 -translate-x-1/2" style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}>
             {navLinks.map((link) => (
               <a
                 key={link.href}
