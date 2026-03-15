@@ -41,7 +41,7 @@ const councils = [
   },
   {
     name: 'Project Cell',
-    shortName: 'PC',
+    shortName: 'PCell',
     tagline: 'CRCE Project Cell',
     description:
       'The hub of applied engineering at CRCE. Project Cell drives student innovation from ideation to implementation, nurturing projects that solve real problems and create lasting impact.',
