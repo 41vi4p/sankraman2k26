@@ -1,8 +1,83 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { animate, stagger } from "animejs";
 
 export default function RegistrationSection() {
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const hasAnimatedCards = useRef(false);
+  const hasAnimatedCta = useRef(false);
+
+  // Animate info cards with stagger
+  useEffect(() => {
+    const container = cardsRef.current;
+    if (!container) return;
+
+    const cards = Array.from(container.querySelectorAll<HTMLElement>(".reg-card"));
+    
+    cards.forEach((card) => {
+      card.style.opacity = "0";
+      card.style.transform = "translateY(40px) scale(0.9)";
+    });
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimatedCards.current) {
+          hasAnimatedCards.current = true;
+          observer.disconnect();
+
+          animate(cards, {
+            opacity: [0, 1],
+            translateY: [40, 0],
+            scale: [0.9, 1],
+            delay: stagger(100),
+            duration: 700,
+            ease: "outBack",
+          });
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
+  // Animate CTA button with special effect
+  useEffect(() => {
+    const container = ctaRef.current;
+    if (!container) return;
+
+    const btn = container.querySelector<HTMLElement>(".cta-register");
+    if (!btn) return;
+    
+    btn.style.opacity = "0";
+    btn.style.transform = "translateY(30px) scale(0.9)";
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimatedCta.current) {
+          hasAnimatedCta.current = true;
+          observer.disconnect();
+
+          animate(btn, {
+            opacity: [0, 1],
+            translateY: [30, 0],
+            scale: [0.9, 1],
+            duration: 800,
+            ease: "outElastic(1, 0.5)",
+          });
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div id="registration" className="relative min-h-[80vh] flex items-center justify-center py-20">
 
@@ -23,8 +98,12 @@ export default function RegistrationSection() {
         </div>
 
         <h2
-          className="text-[4vw] md:text-[3vw] lg:text-[3.5vw] tracking-widest text-[#ffedd5] drop-shadow-[0_0_30px_rgba(255,166,0,0.6)] mb-8"
-          style={{ fontFamily: "'Dune Rise', sans-serif" }}
+          className="dune-heading text-[#ffedd5] drop-shadow-[0_0_30px_rgba(255,166,0,0.6)] mb-8"
+          style={{ 
+            fontFamily: "'Dune Rise', sans-serif",
+            fontSize: "clamp(1.2rem, 4vw, 2.5rem)",
+            letterSpacing: "0.05em"
+          }}
         >
           REGISTER FOR PRAKALP 4.0
         </h2>
@@ -34,8 +113,8 @@ export default function RegistrationSection() {
         </p>
 
         {/* Info Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          <div className="p-6 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500">
+        <div ref={cardsRef} className="grid md:grid-cols-3 gap-6 mb-16">
+          <div className="reg-card p-6 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500">
             <div className="text-[0.6rem] md:text-xs font-black tracking-[0.3em] text-[#ff6600] uppercase mb-3">
               ELIGIBILITY
             </div>
@@ -43,7 +122,7 @@ export default function RegistrationSection() {
               Open to all engineering students across India
             </div>
           </div>
-          <div className="p-6 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500">
+          <div className="reg-card p-6 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500">
             <div className="text-[0.6rem] md:text-xs font-black tracking-[0.3em] text-[#ff6600] uppercase mb-3">
               TEAM DETAILS
             </div>
@@ -51,7 +130,7 @@ export default function RegistrationSection() {
               2 to 4 members per team
             </div>
           </div>
-          <div className="p-6 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500">
+          <div className="reg-card p-6 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500">
             <div className="text-[0.6rem] md:text-xs font-black tracking-[0.3em] text-[#ff6600] uppercase mb-3">
               REGISTRATION FEE
             </div>
@@ -62,11 +141,14 @@ export default function RegistrationSection() {
         </div>
 
         {/* CTA Button */}
-        <div>
-          <button className="group relative border-2 border-[#ff6600] bg-black/30 backdrop-blur-sm px-12 py-4 rounded-lg overflow-hidden transition-all duration-500 hover:border-[#ffaa00] hover:bg-black/40">
+        <div ref={ctaRef}>
+          <button className="cta-register group relative border-2 border-[#ff6600] bg-black/30 backdrop-blur-sm px-12 py-4 rounded-lg overflow-hidden transition-all duration-500 hover:border-[#ffaa00] hover:bg-black/40 neon-btn">
             <span
-              className="relative z-10 text-xl font-black tracking-[0.3em] text-[#ff6600] uppercase group-hover:text-[#1a0a00] transition-colors duration-500 drop-shadow-sm"
-              style={{ fontFamily: "'Dune Rise', sans-serif" }}
+              className="relative z-10 font-black tracking-[0.2em] text-[#ff6600] uppercase group-hover:text-[#1a0a00] transition-colors duration-500 drop-shadow-sm"
+              style={{ 
+                fontFamily: "'Dune Rise', sans-serif",
+                fontSize: "clamp(0.85rem, 2vw, 1.1rem)"
+              }}
             >
               REGISTER NOW
             </span>

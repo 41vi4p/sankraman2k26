@@ -1,8 +1,87 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { animate, stagger } from "animejs";
 
 export default function ContactSection() {
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const hasAnimatedCards = useRef(false);
+  const hasAnimatedButtons = useRef(false);
+
+  // Animate CTA buttons
+  useEffect(() => {
+    const container = buttonsRef.current;
+    if (!container) return;
+
+    const buttons = Array.from(container.querySelectorAll<HTMLElement>(".cta-btn"));
+    
+    buttons.forEach((btn) => {
+      btn.style.opacity = "0";
+      btn.style.transform = "translateY(20px) scale(0.95)";
+    });
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimatedButtons.current) {
+          hasAnimatedButtons.current = true;
+          observer.disconnect();
+
+          animate(buttons, {
+            opacity: [0, 1],
+            translateY: [20, 0],
+            scale: [0.95, 1],
+            delay: stagger(150),
+            duration: 700,
+            ease: "outBack",
+          });
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
+  // Animate info cards
+  useEffect(() => {
+    const container = cardsRef.current;
+    if (!container) return;
+
+    const cards = Array.from(container.querySelectorAll<HTMLElement>(".info-card"));
+    
+    cards.forEach((card, i) => {
+      card.style.opacity = "0";
+      card.style.transform = `translateX(${i % 2 === 0 ? -40 : 40}px)`;
+    });
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimatedCards.current) {
+          hasAnimatedCards.current = true;
+          observer.disconnect();
+
+          animate(cards, {
+            opacity: [0, 1],
+            translateX: [
+              (_, i) => (i % 2 === 0 ? -40 : 40),
+              0
+            ],
+            delay: stagger(200),
+            duration: 800,
+            ease: "outExpo",
+          });
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div id="contact" className="relative min-h-screen flex items-center justify-center py-20">
 
@@ -24,8 +103,12 @@ export default function ContactSection() {
           </div>
 
           <h2
-            className="text-[4vw] md:text-[3vw] lg:text-[3.5vw] tracking-widest text-[#ffedd5] mb-8 drop-shadow-[0_0_30px_rgba(255,166,0,0.6)]"
-            style={{ fontFamily: "'Dune Rise', sans-serif" }}
+            className="dune-heading text-[#ffedd5] mb-8 drop-shadow-[0_0_30px_rgba(255,166,0,0.6)]"
+            style={{ 
+              fontFamily: "'Dune Rise', sans-serif",
+              fontSize: "clamp(1.4rem, 4vw, 2.8rem)",
+              letterSpacing: "0.06em"
+            }}
           >
             JOIN THE TRANSITION
           </h2>
@@ -36,21 +119,27 @@ export default function ContactSection() {
         </div>
 
         {/* CTA Buttons */}
-        <div className="mb-16 flex flex-col sm:flex-row justify-center items-center gap-6">
-          <button className="group relative border-2 border-[#ff6600] bg-black/30 backdrop-blur-sm px-12 py-4 rounded-lg overflow-hidden transition-all duration-500 hover:border-[#ffaa00] hover:bg-black/40">
+        <div ref={buttonsRef} className="mb-16 flex flex-col sm:flex-row justify-center items-center gap-6">
+          <button className="cta-btn group relative border-2 border-[#ff6600] bg-black/30 backdrop-blur-sm px-12 py-4 rounded-lg overflow-hidden transition-all duration-500 hover:border-[#ffaa00] hover:bg-black/40 neon-btn">
             <span
-              className="relative z-10 text-xl font-black tracking-[0.3em] text-[#ff6600] uppercase group-hover:text-[#1a0a00] transition-colors duration-500 drop-shadow-sm"
-              style={{ fontFamily: "'Dune Rise', sans-serif" }}
+              className="relative z-10 font-black tracking-[0.2em] text-[#ff6600] uppercase group-hover:text-[#1a0a00] transition-colors duration-500 drop-shadow-sm"
+              style={{ 
+                fontFamily: "'Dune Rise', sans-serif",
+                fontSize: "clamp(0.85rem, 2vw, 1.1rem)"
+              }}
             >
               REGISTER NOW
             </span>
             <div className="absolute inset-0 bg-[#ff6600] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
           </button>
 
-          <button className="group relative border border-[#ffedd5]/30 bg-white/5 backdrop-blur-sm px-12 py-4 rounded-lg overflow-hidden transition-all duration-500 hover:bg-white/10 hover:border-[#ffedd5]/60">
+          <button className="cta-btn group relative border border-[#ffedd5]/30 bg-white/5 backdrop-blur-sm px-12 py-4 rounded-lg overflow-hidden transition-all duration-500 hover:bg-white/10 hover:border-[#ffedd5]/60">
             <span
-              className="relative z-10 text-xl font-black tracking-[0.3em] text-[#ffedd5] uppercase transition-colors duration-500 drop-shadow-sm"
-              style={{ fontFamily: "'Dune Rise', sans-serif" }}
+              className="relative z-10 font-black tracking-[0.2em] text-[#ffedd5] uppercase transition-colors duration-500 drop-shadow-sm"
+              style={{ 
+                fontFamily: "'Dune Rise', sans-serif",
+                fontSize: "clamp(0.85rem, 2vw, 1.1rem)"
+              }}
             >
               CONTACT US
             </span>
@@ -59,8 +148,8 @@ export default function ContactSection() {
         </div>
 
         {/* Venue Info */}
-        <div className="grid md:grid-cols-2 gap-8 text-left">
-          <div className="p-8 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500">
+        <div ref={cardsRef} className="grid md:grid-cols-2 gap-8 text-left">
+          <div className="info-card p-8 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500">
             <div className="text-[0.6rem] md:text-xs font-black tracking-[0.3em] text-[#ff6600] uppercase mb-4">
               EVENT VENUE
             </div>
@@ -79,7 +168,7 @@ export default function ContactSection() {
               </div>
             </div>
           </div>
-          <div className="p-8 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500 flex flex-col justify-center">
+          <div className="info-card p-8 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500 flex flex-col justify-center">
             <div className="text-[0.6rem] md:text-xs font-black tracking-[0.3em] text-[#ff6600] uppercase mb-4">
               CONTACT & QUICK LINKS
             </div>

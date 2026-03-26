@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { animate, stagger } from "animejs";
 
 export default function FAQSection() {
   const faqs = [
@@ -13,10 +14,47 @@ export default function FAQSection() {
   ];
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  // Anime.js entrance animation
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const items = Array.from(container.querySelectorAll<HTMLElement>(".faq-item"));
+    
+    // Set initial state
+    items.forEach((item) => {
+      item.style.opacity = "0";
+      item.style.transform = "translateX(-30px)";
+    });
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          observer.disconnect();
+
+          animate(items, {
+            opacity: [0, 1],
+            translateX: [-30, 0],
+            delay: stagger(80, { start: 200 }),
+            duration: 600,
+            ease: "outExpo",
+          });
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div id="faq" className="relative min-h-[80vh] flex items-center justify-center py-20">
@@ -39,28 +77,32 @@ export default function FAQSection() {
           </div>
 
           <h2
-            className="text-[4vw] md:text-[3vw] lg:text-[3.5vw] tracking-widest text-[#ffedd5] drop-shadow-[0_0_30px_rgba(255,166,0,0.6)]"
-            style={{ fontFamily: "'Dune Rise', sans-serif" }}
+            className="dune-heading text-[#ffedd5] drop-shadow-[0_0_30px_rgba(255,166,0,0.6)]"
+            style={{ 
+              fontFamily: "'Dune Rise', sans-serif",
+              fontSize: "clamp(1.5rem, 4vw, 3rem)",
+              letterSpacing: "0.06em"
+            }}
           >
             FAQS
           </h2>
         </div>
 
         {/* FAQ Accordion */}
-        <div className="space-y-4">
+        <div ref={containerRef} className="space-y-4">
           {faqs.map((faq, index) => (
             <div 
               key={index} 
-              className="border border-[#ff6600]/20 bg-black/40 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 hover:border-[#ff6600]/50"
+              className="faq-item border border-[#ff6600]/20 bg-black/40 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 hover:border-[#ff6600]/50 hover:shadow-[0_0_20px_rgba(255,102,0,0.15)]"
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center p-6 text-left focus:outline-none"
+                className="w-full flex justify-between items-center p-6 text-left focus:outline-none group"
               >
-                <span className="text-[#ffedd5] font-bold tracking-wider text-lg">
+                <span className="text-[#ffedd5] font-bold tracking-wider text-lg group-hover:text-[#ffaa00] transition-colors">
                   {faq.question}
                 </span>
-                <span className={`text-[#ff6600] text-2xl transition-transform duration-300 ${openIndex === index ? 'rotate-45' : ''}`}>
+                <span className={`text-[#ff6600] text-2xl transition-all duration-300 ${openIndex === index ? 'rotate-45 scale-110' : ''} group-hover:scale-110`}>
                   +
                 </span>
               </button>

@@ -143,8 +143,12 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              style={{ fontFamily: "'Dune Rise', sans-serif" }}
-              className="text-[7vw] md:text-[5vw] lg:text-[6vw] tracking-widest text-[#ffedd5] drop-shadow-[0_0_30px_rgba(255,166,0,0.8)] mb-2 leading-tight"
+              className="dune-heading text-[#ffedd5] drop-shadow-[0_0_30px_rgba(255,166,0,0.8)] mb-2 leading-tight"
+              style={{
+                fontFamily: "'Dune Rise', sans-serif",
+                fontSize: "clamp(2rem, 7vw, 5rem)",
+                letterSpacing: "clamp(0.02em, 0.5vw, 0.08em)",
+              }}
             >
               SANKRAMAN
             </motion.h1>
