@@ -72,12 +72,12 @@ export default function JourneySection() {
                       {event.time}
                     </div>
                     <h3
-                      className="text-lg md:text-xl lg:text-2xl text-[#ffedd5] mb-2 tracking-wider drop-shadow-sm"
+                      className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#ffedd5] mb-2 tracking-wider drop-shadow-sm"
                       style={{ fontFamily: "'Dune Rise', sans-serif" }}
                     >
                       {event.title}
                     </h3>
-                    <p className="text-sm md:text-base text-[#ffedd5]/90 tracking-wide drop-shadow-sm leading-relaxed">
+                    <p className="text-xs sm:text-sm md:text-base text-[#ffedd5]/90 tracking-wide drop-shadow-sm leading-relaxed">
                       {event.desc}
                     </p>
                   </div>
