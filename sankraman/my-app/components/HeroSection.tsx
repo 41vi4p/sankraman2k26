@@ -89,20 +89,31 @@ export default function HeroSection() {
                 </a>
               </div>
 
-            {/* Mobile Hamburger Icon */}
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden flex flex-col justify-center items-center w-8 h-8 z-[60]"
-            >
-              <span className={`bg-current h-[2px] w-6 rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-[6px] !bg-[#ffedd5]' : ''}`}></span>
-              <span className={`bg-current h-[2px] w-6 rounded-full transition-all duration-300 my-1 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-              <span className={`bg-current h-[2px] w-6 rounded-full transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-[6px] !bg-[#ffedd5]' : ''}`}></span>
-            </button>
+            <div className="md:hidden w-full flex items-center justify-between">
+              <a
+                href="#home"
+                style={{ fontFamily: "'Dune Rise', sans-serif" }}
+                className="text-sm tracking-[0.12em] text-[#ffedd5]"
+              >
+                Prakalp 4.0
+              </a>
+
+              {/* Mobile Hamburger Icon */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="flex flex-col justify-center items-center w-8 h-8 z-60"
+                aria-label="Toggle menu"
+              >
+                <span className={`bg-current h-0.5 w-6 rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5 bg-[#ffedd5]!' : ''}`}></span>
+                <span className={`bg-current h-0.5 w-6 rounded-full transition-all duration-300 my-1 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+                <span className={`bg-current h-0.5 w-6 rounded-full transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5 bg-[#ffedd5]!' : ''}`}></span>
+              </button>
+            </div>
           </div>
         </nav>
 
         {/* Mobile Menu Overlay */}
-        <div className={`fixed inset-0 bg-black/95 backdrop-blur-xl z-[55] flex flex-col items-center justify-center transition-all duration-500 ease-in-out pointer-events-auto ${
+        <div className={`fixed inset-0 bg-black/95 backdrop-blur-xl z-55 flex flex-col items-center justify-center transition-all duration-500 ease-in-out pointer-events-auto ${
           isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}>
           <div className="flex flex-col gap-10 text-center text-lg font-black tracking-[0.4em] uppercase text-[#ffedd5]">
@@ -136,11 +147,10 @@ export default function HeroSection() {
           SCROLL DOWN
         </div>
 
-        {/* Bottom Right Partners */}
-        <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 z-30 pointer-events-none">
-          <div className={`text-xs font-black tracking-[0.4em] uppercase opacity-80 whitespace-nowrap ${isScrolled ? 'text-[#ffedd5]' : 'text-[#1a0a00] mix-blend-multiply'
-            }`}>
-            WIE × PROJECTCELL × IEEE
+        {/* Bottom Center Partners */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:bottom-12 z-30 pointer-events-none">
+          <div className="text-xs font-black tracking-[0.4em] uppercase opacity-90 whitespace-nowrap text-white">
+            WIE x PROJECT CELL × IEEE
           </div>
         </div>
 
