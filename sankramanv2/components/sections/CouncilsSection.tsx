@@ -52,17 +52,17 @@ export default function CouncilsSection() {
                 {/* Content */}
                 <div className="text-center relative z-10">
                   <h3
-                    className="text-2xl md:text-3xl text-[#ff6600] mb-3 tracking-wider group-hover:text-[#ffaa00] transition-colors drop-shadow-[0_0_25px_rgba(255,102,0,0.7)]"
+                    className="text-xl sm:text-2xl md:text-3xl text-[#ff6600] mb-3 tracking-wider group-hover:text-[#ffaa00] transition-colors drop-shadow-[0_0_25px_rgba(255,102,0,0.7)]"
                     style={{ fontFamily: "'Dune Rise', sans-serif" }}
                   >
                     {council.name}
                   </h3>
 
-                  <div className="text-[0.6rem] md:text-xs font-black tracking-[0.2em] text-[#ffedd5]/80 uppercase mb-4 drop-shadow-sm">
+                  <div className="text-[0.5rem] sm:text-[0.6rem] md:text-xs font-black tracking-[0.2em] text-[#ffedd5]/80 uppercase mb-4 drop-shadow-sm">
                     {council.fullName}
                   </div>
 
-                  <p className="text-[#ffedd5]/90 leading-relaxed tracking-wide drop-shadow-sm">
+                  <p className="text-xs sm:text-sm md:text-base text-[#ffedd5]/90 leading-relaxed tracking-wide drop-shadow-sm">
                     {council.description}
                   </p>
                 </div>

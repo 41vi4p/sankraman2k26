@@ -32,31 +32,31 @@ export default function AboutSection() {
         </h2>
 
         {/* Description */}
-        <div className="max-w-4xl mx-auto space-y-8 mb-16">
-          <p className="text-lg md:text-xl text-[#ffedd5]/95 leading-relaxed tracking-wide drop-shadow-sm">
+        <div className="max-w-4xl mx-auto space-y-6 md:space-y-8 mb-12 md:mb-16 px-2 md:px-0">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#ffedd5]/95 leading-relaxed md:leading-loose tracking-normal md:tracking-wide drop-shadow-lg">
             PRAKALP 4.0 is our flagship National-Level Project Exhibition competition organized by IEEE, WIE, and the Project Cell of FR. CRCE. Now in its 4th edition, it provides a massive platform for over 120+ teams from 25+ colleges across India to showcase breakthrough hardware and software innovations to top industry experts.
           </p>
-          <p className="text-lg md:text-xl text-[#ffedd5]/90 leading-relaxed tracking-wide drop-shadow-sm">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#ffedd5]/90 leading-relaxed md:leading-loose tracking-normal md:tracking-wide drop-shadow-lg">
             Built around the theme &quot;Sankraman&quot; — from idea to impact, PRAKALP focuses on real-world problem-solving, technical excellence, and innovation that creates meaningful change.
           </p>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8">
           {[
             { number: "120+", label: "TEAMS" },
             { number: "25+", label: "COLLEGES" },
             { number: "₹100K", label: "PRIZE POOL" },
             { number: "4th", label: "EDITION" }
           ].map((stat, index) => (
-            <div key={index} className="text-center p-4 rounded-lg bg-black/20 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.5)] transition-all duration-500">
+            <div key={index} className="text-center p-3 md:p-4 rounded-lg bg-black/20 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.5)] transition-all duration-500">
               <div
-                className="text-3xl md:text-4xl font-black text-[#ff6600] tracking-wider drop-shadow-[0_0_20px_rgba(255,102,0,0.7)]"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-[#ff6600] tracking-wider drop-shadow-[0_0_20px_rgba(255,102,0,0.7)]"
                 style={{ fontFamily: "'Dune Rise', sans-serif" }}
               >
                 {stat.number}
               </div>
-              <div className="text-[0.55rem] md:text-xs font-black tracking-[0.3em] text-[#ffedd5]/80 uppercase mt-2">
+              <div className="text-[0.45rem] sm:text-[0.5rem] md:text-xs font-black tracking-[0.2em] md:tracking-[0.3em] text-[#ffedd5]/80 uppercase mt-1 md:mt-2">
                 {stat.label}
               </div>
             </div>
