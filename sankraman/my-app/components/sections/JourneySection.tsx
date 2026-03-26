@@ -17,10 +17,9 @@ export default function JourneySection() {
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   const timelineEvents = [
-    { time: "DAY 0", title: "ARRIVAL OF THE CHOSEN", desc: "Registration & Welcome" },
-    { time: "DAY 1", title: "THE INITIATION", desc: "Opening Ceremony & Workshops" },
-    { time: "DAY 2", title: "THE TRIALS", desc: "Hackathon & Competitions Begin" },
-    { time: "DAY 3", title: "THE CONVERGENCE", desc: "Final Presentations & Awards" }
+    { time: "ROUND 1", title: "ONLINE SUBMISSION", desc: "Submit a project PPT (max 7 slides) and a demo video (max 4 minutes). Top teams will be shortlisted for the next phase." },
+    { time: "ROUND 2", title: "ON-CAMPUS PRESENTATION", desc: "Present your project with a working model at FR.CRCE. 7 min presentation + 3 min Q&A." },
+    { time: "FINAL", title: "EVALUATION PHASE", desc: "Finalists present before expert judges for advanced evaluation. Winners selected based on overall performance." }
   ];
 
   return (
@@ -40,14 +39,14 @@ export default function JourneySection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="text-xs font-black tracking-[0.4em] text-[#ff6600] uppercase mb-8 mix-blend-screen opacity-90">
-            THE JOURNEY
+            EVENT PHASES
           </div>
 
           <h2
             className="text-[4vw] md:text-[3vw] lg:text-[3.5vw] tracking-widest text-[#ffedd5] drop-shadow-[0_0_30px_rgba(255,166,0,0.6)]"
             style={{ fontFamily: "'Dune Rise', sans-serif" }}
           >
-            TIMELINE OF TRANSFORMATION
+            THE PRAKALP JOURNEY
           </h2>
         </div>
 
@@ -68,7 +67,7 @@ export default function JourneySection() {
               <div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                 <div className={`w-full pl-14 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:pl-0 md:text-right' : 'md:pl-12'}`}>
                   {/* Event Card with Glassmorphism */}
-                  <div className="p-6 rounded-lg bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:border-[#ff6600]/50 transition-all duration-500">
+                  <div className="p-6 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500">
                     <div className="text-xs font-black tracking-[0.3em] text-[#ff6600] uppercase mb-2">
                       {event.time}
                     </div>

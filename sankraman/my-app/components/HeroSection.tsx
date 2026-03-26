@@ -134,13 +134,30 @@ export default function HeroSection() {
         </div>
 
         {/* Rising SANKRAMAN Text (z-10) */}
-        <div className="absolute inset-0 z-10 w-full flex justify-center items-center pointer-events-none">
-          <motion.h1
-            style={{ y: textY, scale: textScale, opacity: textOpacity, fontFamily: "'Dune Rise', sans-serif" }}
-            className="text-[7vw] md:text-[5vw] lg:text-[6vw] tracking-widest text-[#ffedd5] drop-shadow-[0_0_30px_rgba(255,166,0,0.8)]"
+        <div className="absolute inset-0 z-10 w-full flex flex-col justify-center items-center pointer-events-none px-6 text-center">
+          <motion.div
+            style={{ y: textY, scale: textScale, opacity: textOpacity }}
+            className="flex flex-col items-center max-w-4xl"
           >
-            SANKRAMAN
-          </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              style={{ fontFamily: "'Dune Rise', sans-serif" }}
+              className="text-[7vw] md:text-[5vw] lg:text-[6vw] tracking-widest text-[#ffedd5] drop-shadow-[0_0_30px_rgba(255,166,0,0.8)] mb-2 leading-tight"
+            >
+              SANKRAMAN
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-sm md:text-base font-black tracking-[0.4em] text-[#ff6600] uppercase mix-blend-screen opacity-90 mt-2"
+            >
+              From Idea to Impact
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Foreground Dune Mask (z-20) */}

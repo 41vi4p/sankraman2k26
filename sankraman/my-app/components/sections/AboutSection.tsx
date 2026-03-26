@@ -28,18 +28,16 @@ export default function AboutSection() {
           className="text-[4vw] md:text-[3vw] lg:text-[3.5vw] tracking-widest text-[#ffedd5] mb-12 drop-shadow-[0_0_30px_rgba(255,166,0,0.6)]"
           style={{ fontFamily: "'Dune Rise', sans-serif" }}
         >
-          THE AWAKENING
+          WHAT IS PRAKALP?
         </h2>
 
         {/* Description */}
         <div className="max-w-4xl mx-auto space-y-8 mb-16">
           <p className="text-lg md:text-xl text-[#ffedd5]/95 leading-relaxed tracking-wide drop-shadow-sm">
-            In the vast expanse of innovation, where engineering minds converge to reshape tomorrow,
-            SANKRAMAN emerges as the ultimate crucible of technological transformation.
+            PRAKALP is a national-level project competition organized by IEEE-WIE and Project Cell, CRCE. It brings together 80+ shortlisted teams from across India to present innovative hardware and software projects before industry and academic experts.
           </p>
           <p className="text-lg md:text-xl text-[#ffedd5]/90 leading-relaxed tracking-wide drop-shadow-sm">
-            PRAKALP 4.0 brings together the brightest engineers, visionaries, and architects of change
-            in a journey that transcends conventional boundaries of technology and imagination.
+            Built around the theme &quot;Sankraman&quot; — from idea to impact, PRAKALP focuses on real-world problem-solving, technical excellence, and innovation that creates meaningful change.
           </p>
         </div>
 
@@ -51,7 +49,7 @@ export default function AboutSection() {
             { number: "25+", label: "WORKSHOPS" },
             { number: "₹50K+", label: "PRIZE POOL" }
           ].map((stat, index) => (
-            <div key={index} className="text-center p-4 rounded-lg bg-black/20 backdrop-blur-sm border border-[#ff6600]/20 hover:border-[#ff6600]/40 transition-all duration-300">
+            <div key={index} className="text-center p-4 rounded-lg bg-black/20 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.5)] transition-all duration-500">
               <div
                 className="text-3xl md:text-4xl font-black text-[#ff6600] tracking-wider drop-shadow-[0_0_20px_rgba(255,102,0,0.7)]"
                 style={{ fontFamily: "'Dune Rise', sans-serif" }}

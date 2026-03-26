@@ -4,7 +4,10 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
 import JourneySection from "@/components/sections/JourneySection";
 import CouncilsSection from "@/components/sections/CouncilsSection";
-import StatsSection from "@/components/sections/StatsSection";
+import PrizesSection from "@/components/sections/PrizesSection";
+import RegistrationSection from "@/components/sections/RegistrationSection";
+import InfoSection from "@/components/sections/InfoSection";
+import FAQSection from "@/components/sections/FAQSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -27,10 +30,19 @@ export default function Home() {
         {/* Councils Section */}
         <CouncilsSection />
 
-        {/* Stats Section */}
-        <StatsSection />
+        {/* Info & Selection Section */}
+        <InfoSection />
 
-        {/* Contact Section */}
+        {/* Prizes Section */}
+        <PrizesSection />
+
+        {/* Registration Section */}
+        <RegistrationSection />
+
+        {/* FAQs Section */}
+        <FAQSection />
+
+        {/* Contact/CTA Section */}
         <ContactSection />
 
         {/* Footer */}
