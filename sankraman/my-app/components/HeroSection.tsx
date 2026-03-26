@@ -93,7 +93,7 @@ export default function HeroSection() {
               <a
                 href="#home"
                 style={{ fontFamily: "'Dune Rise', sans-serif" }}
-                className="text-sm tracking-[0.12em] text-[#ffedd5]"
+                className="text-sm tracking-[0.12em] text-black"
               >
                 Prakalp 4.0
               </a>
@@ -142,10 +142,7 @@ export default function HeroSection() {
 
 
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 text-[#ffedd5]/50 text-sm tracking-widest animate-pulse pointer-events-none">
-          SCROLL DOWN
-        </div>
+
 
         {/* Bottom Center Partners */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:bottom-12 z-30 pointer-events-none">
