@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FaEnvelope, FaInstagram } from "react-icons/fa";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -26,12 +27,12 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <h3
-            className="text-2xl sm:text-3xl md:text-4xl tracking-wider md:tracking-widest text-[#ffedd5] mb-4 drop-shadow-[0_0_20px_rgba(255,166,0,0.6)]"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-wider md:tracking-widest text-[#ffedd5] mb-4 drop-shadow-[0_0_20px_rgba(255,166,0,0.6)]"
             style={{ fontFamily: "'Dune Rise', sans-serif" }}
           >
             SANKRAMAN
           </h3>
-          <p className="text-[#ff6600] text-sm tracking-[0.3em] uppercase">
+          <p className="text-[#ff6600] text-sm lg:text-base xl:text-lg tracking-[0.3em] uppercase">
             Engineering the Transition
           </p>
         </motion.div>
@@ -49,42 +50,58 @@ export default function Footer() {
             <div className="grid grid-cols-2 gap-2 sm:gap-6">
               {/* IEEE Contact */}
               <div className="text-center">
-                <div className="text-[0.7rem] font-black tracking-[0.2em] text-[#ff6600] uppercase mb-3">IEEE</div>
-                
-                {/* Email with icon */}
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <FaEnvelope size={12} className="text-[#ff6600]" />
-                  <a href="mailto:ieeece.24@gmail.com" className="text-[0.6rem] sm:text-[0.7rem] text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
-                    ieeece.24@gmail.com
-                  </a>
+                <div className="flex justify-center mb-3">
+                  <Image
+                    src="/logos/ieee.png"
+                    alt="IEEE"
+                    width={80}
+                    height={60}
+                    className="h-12 sm:h-16 lg:h-20 xl:h-24 w-auto"
+                  />
                 </div>
                 
                 {/* Instagram with icon */}
-                <div className="flex items-center justify-center gap-2">
-                  <FaInstagram size={12} className="text-[#ff6600]" />
-                  <a href="https://instagram.com/ieee_crce" target="_blank" rel="noopener noreferrer" className="text-[0.6rem] sm:text-[0.7rem] text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
+                <a href="https://instagram.com/ieee_crce" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center justify-center gap-2 mb-2">
+                  <FaInstagram size={18} className="text-[#ff6600]" />
+                  <span className="text-[0.6rem] sm:text-[0.7rem] lg:text-sm xl:text-base text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
                     @ieee_crce
+                  </span>
+                </a>
+                
+                {/* Email with icon */}
+                <div className="flex items-center justify-center gap-2">
+                  <FaEnvelope size={12} className="text-[#ff6600]" />
+                  <a href="mailto:ieeece.24@gmail.com" className="text-[0.6rem] sm:text-[0.7rem] lg:text-sm xl:text-base text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
+                    ieeece.24@gmail.com
                   </a>
                 </div>
               </div>
 
               {/* WIE Contact */}
               <div className="text-center">
-                <div className="text-[0.7rem] font-black tracking-[0.2em] text-[#ff6600] uppercase mb-3">WIE</div>
-                
-                {/* Email with icon */}
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <FaEnvelope size={12} className="text-[#ff6600]" />
-                  <a href="mailto:wieieee.21@gmail.com" className="text-[0.6rem] sm:text-[0.7rem] text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
-                    wieieee.21@gmail.com
-                  </a>
+                <div className="flex justify-center mb-3">
+                  <Image
+                    src="/logos/wie.png"
+                    alt="WIE"
+                    width={80}
+                    height={60}
+                    className="h-12 sm:h-16 lg:h-20 xl:h-24 w-auto"
+                  />
                 </div>
                 
                 {/* Instagram with icon */}
-                <div className="flex items-center justify-center gap-2">
-                  <FaInstagram size={12} className="text-[#ff6600]" />
-                  <a href="https://instagram.com/wie_crce" target="_blank" rel="noopener noreferrer" className="text-[0.6rem] sm:text-[0.7rem] text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
+                <a href="https://instagram.com/wie_crce" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center justify-center gap-2 mb-2">
+                  <FaInstagram size={18} className="text-[#ff6600]" />
+                  <span className="text-[0.6rem] sm:text-[0.7rem] lg:text-sm xl:text-base text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
                     @wie_crce
+                  </span>
+                </a>
+                
+                {/* Email with icon */}
+                <div className="flex items-center justify-center gap-2">
+                  <FaEnvelope size={12} className="text-[#ff6600]" />
+                  <a href="mailto:wieieee.21@gmail.com" className="text-[0.6rem] sm:text-[0.7rem] lg:text-sm xl:text-base text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
+                    wieieee.21@gmail.com
                   </a>
                 </div>
               </div>
@@ -92,21 +109,29 @@ export default function Footer() {
 
             {/* Bottom: PROJECT CELL full width */}
             <div className="text-center pt-4">
-              <div className="text-[0.7rem] font-black tracking-[0.2em] text-[#ff6600] uppercase mb-3">PROJECT CELL</div>
-              
-              {/* Email with icon */}
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <FaEnvelope size={12} className="text-[#ff6600]" />
-                <a href="mailto:projectcellcrce2024@gmail.com" className="text-[0.6rem] sm:text-[0.7rem] text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
-                  projectcellcrce2024@gmail.com
-                </a>
+              <div className="flex justify-center mb-3">
+                <Image
+                  src="/logos/project_cell.png"
+                  alt="Project Cell"
+                  width={120}
+                  height={60}
+                  className="h-12 sm:h-16 lg:h-20 xl:h-24 w-auto"
+                />
               </div>
               
               {/* Instagram with icon */}
-              <div className="flex items-center justify-center gap-2">
-                <FaInstagram size={12} className="text-[#ff6600]" />
-                <a href="https://instagram.com/project_cell.crce" target="_blank" rel="noopener noreferrer" className="text-[0.6rem] sm:text-[0.7rem] text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
+              <a href="https://instagram.com/project_cell.crce" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center justify-center gap-2 mb-2">
+                <FaInstagram size={18} className="text-[#ff6600]" />
+                <span className="text-[0.6rem] sm:text-[0.7rem] lg:text-sm xl:text-base text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
                   @project_cell.crce
+                </span>
+              </a>
+              
+              {/* Email with icon */}
+              <div className="flex items-center justify-center gap-2">
+                <FaEnvelope size={12} className="text-[#ff6600]" />
+                <a href="mailto:projectcellcrce2024@gmail.com" className="text-[0.6rem] sm:text-[0.7rem] lg:text-sm xl:text-base text-[#ffedd5]/80 hover:text-[#ff6600] transition-colors">
+                  projectcellcrce2024@gmail.com
                 </a>
               </div>
             </div>
@@ -121,7 +146,7 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <p className="text-xs text-[#ffedd5]/70 tracking-[0.1em]">Prakalp 4.0 | Sankraman</p>
+          <p className="text-xs lg:text-sm xl:text-base text-[#ffedd5]/70 tracking-[0.1em]">Prakalp 4.0 | Sankraman</p>
         </motion.div>
       </div>
     </motion.footer>
