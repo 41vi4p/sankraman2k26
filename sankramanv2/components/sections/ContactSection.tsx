@@ -48,7 +48,8 @@ export default function ContactSection() {
             <div className="absolute inset-0 bg-[#ff6600] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
           </a>
 
-          <a href="#contact-heads" className="inline-block">\n            <button className="group relative border border-[#ffedd5]/30 bg-white/5 backdrop-blur-sm px-12 py-4 rounded-lg overflow-hidden transition-all duration-500 hover:bg-white/10 hover:border-[#ffedd5]/60 cursor-pointer">
+          <a href="#contact-heads" className="inline-block">          
+             <button className="group relative border border-[#ffedd5]/30 bg-white/5 backdrop-blur-sm px-12 py-4 rounded-lg overflow-hidden transition-all duration-500 hover:bg-white/10 hover:border-[#ffedd5]/60 cursor-pointer">
               <span
                 className="relative z-10 text-sm sm:text-base md:text-lg lg:text-xl font-black tracking-[0.3em] text-[#ffedd5] uppercase transition-colors duration-500 drop-shadow-sm"
                 style={{ fontFamily: "'Dune Rise', sans-serif" }}
