@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaDownload } from "react-icons/fa";
 
 export default function ContactSection() {
   return (
@@ -146,6 +146,55 @@ export default function ContactSection() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Brochures Section */}
+        <div className="mt-12 pt-12 border-t border-[#ff6600]/20">
+          <div className="text-[0.55rem] md:text-xs font-black tracking-[0.4em] text-[#ff6600] uppercase mb-8 mix-blend-screen opacity-90">
+            RESOURCES
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Internal Team Brochure */}
+            <a
+              href="/brouchures/Prakalp_4.0_FRCRCE_Teams_Only_Brochure.pdf"
+              download
+              className="group p-6 rounded-xl bg-gradient-to-br from-[#ff6600]/10 to-[#ff6600]/5 backdrop-blur-sm border border-[#ff6600]/30 hover:border-[#ff6600]/60 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500 flex flex-col items-center justify-center"
+            >
+              <div className="mb-4 text-[#ff6600] group-hover:scale-110 transition-transform duration-300">
+                <FaDownload size={32} />
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-[#ffedd5] mb-2 text-center">
+                FR.CRCE Teams Brochure
+              </h3>
+              <p className="text-[0.65rem] sm:text-xs text-[#ffedd5]/70 text-center mb-4">
+                Internal teams & participants
+              </p>
+              <div className="text-[0.6rem] sm:text-xs text-[#ff6600] font-semibold group-hover:text-[#ffaa00] transition-colors">
+                ↓ Download PDF
+              </div>
+            </a>
+
+            {/* External Teams Brochure */}
+            <a
+              href="/brouchures/Prakalp_4.0_PR_Brochure_External.pdf"
+              download
+              className="group p-6 rounded-xl bg-gradient-to-br from-[#ff6600]/10 to-[#ff6600]/5 backdrop-blur-sm border border-[#ff6600]/30 hover:border-[#ff6600]/60 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500 flex flex-col items-center justify-center"
+            >
+              <div className="mb-4 text-[#ff6600] group-hover:scale-110 transition-transform duration-300">
+                <FaDownload size={32} />
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-[#ffedd5] mb-2 text-center">
+                External Teams Brochure
+              </h3>
+              <p className="text-[0.65rem] sm:text-xs text-[#ffedd5]/70 text-center mb-4">
+                For external college participants
+              </p>
+              <div className="text-[0.6rem] sm:text-xs text-[#ff6600] font-semibold group-hover:text-[#ffaa00] transition-colors">
+                ↓ Download PDF
+              </div>
+            </a>
           </div>
         </div>
 
