@@ -2,8 +2,39 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { animate, stagger } from "animejs";
 
 export default function CouncilsSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animate(section.querySelectorAll("[data-council]"), {
+              translateY: [50, 0],
+              opacity: [0, 1],
+              scale: [0.92, 1],
+              rotateX: [8, 0],
+              duration: 750,
+              delay: stagger(150),
+              ease: (t: number) => 1 - Math.pow(1 - t, 3),
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
   const councils = [
     { logo: "/logos/wie.png", alt: "WIE", description: "IEEE Women in Engineering — empowering women in STEM through mentorship, leadership programs, and community building. WiE CRCE champions diversity and inclusion in engineering." },
     { logo: "/logos/project_cell.png", alt: "Project Cell", description: "The hub of applied engineering at CRCE. Project Cell drives student innovation from ideation to implementation, nurturing projects that solve real problems and create lasting impact." },
@@ -11,11 +42,23 @@ export default function CouncilsSection() {
   ];
 
   return (
-    <div id="councils" className="relative min-h-screen flex items-center justify-center py-20">
+    <div ref={sectionRef} id="councils" className="relative min-h-screen flex items-center justify-center py-20">
 
-      {/* Dark Glassmorphism Background */}
-      <div className="absolute inset-0 bg-black/45 backdrop-blur-xl" />
-      <div className="absolute inset-0 bg-gradient-to-br from-black/65 via-black/35 to-black/65" />
+      {/* Blur layer — fades at top and bottom */}
+      <div
+        className="absolute inset-0 backdrop-blur-xl pointer-events-none"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)',
+        }}
+      />
+      {/* Dark overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.78) 12%, rgba(0,0,0,0.78) 88%, rgba(0,0,0,0.3) 100%)',
+        }}
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -41,7 +84,7 @@ export default function CouncilsSection() {
         {/* Councils Grid */}
         <div className="grid md:grid-cols-3 gap-8">
           {councils.map((council, index) => (
-            <div key={index} className="group">
+            <div data-council key={index} className="group">
               <div className="relative border border-[#ff6600]/30 bg-black/50 backdrop-blur-md p-8 rounded-lg hover:border-[#ff6600]/60 hover:bg-black/60 transition-all duration-500">
 
                 {/* Corner accents */}
@@ -79,7 +122,6 @@ export default function CouncilsSection() {
 
       </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/50 pointer-events-none" />
     </div>
   );
 }

@@ -7,9 +7,21 @@ export default function ContactSection() {
   return (
     <div id="contact" className="relative min-h-screen flex items-center justify-center py-20">
 
-      {/* Dark Glassmorphism Background */}
-      <div className="absolute inset-0 bg-black/55 backdrop-blur-2xl" />
-      <div className="absolute inset-0 bg-gradient-to-br from-black/75 via-black/45 to-black/75" />
+      {/* Blur layer — fades at top and bottom */}
+      <div
+        className="absolute inset-0 backdrop-blur-2xl pointer-events-none"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)',
+        }}
+      />
+      {/* Dark overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.82) 12%, rgba(0,0,0,0.82) 88%, rgba(0,0,0,0.3) 100%)',
+        }}
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -59,6 +71,55 @@ export default function ContactSection() {
               <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </button>
           </a>
+        </div>
+
+        {/* Brochures Section */}
+        <div className="mb-16 pt-8 pb-8 border-y border-[#ff6600]/20">
+          <div className="text-[0.55rem] md:text-xs font-black tracking-[0.4em] text-[#ff6600] uppercase mb-8 mix-blend-screen opacity-90">
+            RESOURCES
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Internal Team Brochure */}
+            <a
+              href="/brouchures/Prakalp_4.0_FRCRCE_Teams_Only_Brochure.pdf"
+              download
+              className="group p-6 rounded-xl bg-gradient-to-br from-[#ff6600]/10 to-[#ff6600]/5 backdrop-blur-sm border border-[#ff6600]/30 hover:border-[#ff6600]/60 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500 flex flex-col items-center justify-center"
+            >
+              <div className="mb-4 text-[#ff6600] group-hover:scale-110 transition-transform duration-300">
+                <FaDownload size={32} />
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-[#ffedd5] mb-2 text-center">
+                FR.CRCE Teams Brochure
+              </h3>
+              <p className="text-[0.65rem] sm:text-xs text-[#ffedd5]/70 text-center mb-4">
+                Internal teams & participants
+              </p>
+              <div className="text-[0.6rem] sm:text-xs text-[#ff6600] font-semibold group-hover:text-[#ffaa00] transition-colors">
+                ↓ Download PDF
+              </div>
+            </a>
+
+            {/* External Teams Brochure */}
+            <a
+              href="/brouchures/Prakalp_4.0_PR_Brochure_External.pdf"
+              download
+              className="group p-6 rounded-xl bg-gradient-to-br from-[#ff6600]/10 to-[#ff6600]/5 backdrop-blur-sm border border-[#ff6600]/30 hover:border-[#ff6600]/60 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500 flex flex-col items-center justify-center"
+            >
+              <div className="mb-4 text-[#ff6600] group-hover:scale-110 transition-transform duration-300">
+                <FaDownload size={32} />
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-[#ffedd5] mb-2 text-center">
+                External Teams Brochure
+              </h3>
+              <p className="text-[0.65rem] sm:text-xs text-[#ffedd5]/70 text-center mb-4">
+                For external college participants
+              </p>
+              <div className="text-[0.6rem] sm:text-xs text-[#ff6600] font-semibold group-hover:text-[#ffaa00] transition-colors">
+                ↓ Download PDF
+              </div>
+            </a>
+          </div>
         </div>
 
         {/* Venue Info */}
@@ -146,55 +207,6 @@ export default function ContactSection() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Brochures Section */}
-        <div className="mt-12 pt-12 border-t border-[#ff6600]/20">
-          <div className="text-[0.55rem] md:text-xs font-black tracking-[0.4em] text-[#ff6600] uppercase mb-8 mix-blend-screen opacity-90">
-            RESOURCES
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Internal Team Brochure */}
-            <a
-              href="/brouchures/Prakalp_4.0_FRCRCE_Teams_Only_Brochure.pdf"
-              download
-              className="group p-6 rounded-xl bg-gradient-to-br from-[#ff6600]/10 to-[#ff6600]/5 backdrop-blur-sm border border-[#ff6600]/30 hover:border-[#ff6600]/60 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500 flex flex-col items-center justify-center"
-            >
-              <div className="mb-4 text-[#ff6600] group-hover:scale-110 transition-transform duration-300">
-                <FaDownload size={32} />
-              </div>
-              <h3 className="text-sm sm:text-base font-bold text-[#ffedd5] mb-2 text-center">
-                FR.CRCE Teams Brochure
-              </h3>
-              <p className="text-[0.65rem] sm:text-xs text-[#ffedd5]/70 text-center mb-4">
-                Internal teams & participants
-              </p>
-              <div className="text-[0.6rem] sm:text-xs text-[#ff6600] font-semibold group-hover:text-[#ffaa00] transition-colors">
-                ↓ Download PDF
-              </div>
-            </a>
-
-            {/* External Teams Brochure */}
-            <a
-              href="/brouchures/Prakalp_4.0_PR_Brochure_External.pdf"
-              download
-              className="group p-6 rounded-xl bg-gradient-to-br from-[#ff6600]/10 to-[#ff6600]/5 backdrop-blur-sm border border-[#ff6600]/30 hover:border-[#ff6600]/60 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500 flex flex-col items-center justify-center"
-            >
-              <div className="mb-4 text-[#ff6600] group-hover:scale-110 transition-transform duration-300">
-                <FaDownload size={32} />
-              </div>
-              <h3 className="text-sm sm:text-base font-bold text-[#ffedd5] mb-2 text-center">
-                External Teams Brochure
-              </h3>
-              <p className="text-[0.65rem] sm:text-xs text-[#ffedd5]/70 text-center mb-4">
-                For external college participants
-              </p>
-              <div className="text-[0.6rem] sm:text-xs text-[#ff6600] font-semibold group-hover:text-[#ffaa00] transition-colors">
-                ↓ Download PDF
-              </div>
-            </a>
           </div>
         </div>
 

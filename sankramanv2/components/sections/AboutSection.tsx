@@ -1,14 +1,66 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { animate, stagger } from "animejs";
 
 export default function AboutSection() {
-  return (
-    <div id="about" className="relative min-h-screen flex items-center justify-center py-20">
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-      {/* Dark Glassmorphism Background */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-md" />
-      <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/30 to-black/60" />
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Stagger the stat cards
+            animate(section.querySelectorAll("[data-stat]"), {
+              translateY: [40, 0],
+              opacity: [0, 1],
+              scale: [0.88, 1],
+              duration: 650,
+              delay: stagger(110),
+              ease: (t: number) => 1 - Math.pow(1 - t, 3),
+            });
+            // Animate paragraph text
+            animate(section.querySelectorAll("[data-para]"), {
+              opacity: [0, 1],
+              translateY: [20, 0],
+              duration: 800,
+              delay: stagger(150),
+              ease: (t: number) => 1 - Math.pow(1 - t, 2),
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={sectionRef} id="about" className="relative min-h-screen flex items-center justify-center py-20">
+
+      {/* Blur layer — masked so blur fades in from top and out at bottom */}
+      <div
+        className="absolute inset-0 backdrop-blur-md pointer-events-none"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)',
+        }}
+      />
+      {/* Dark overlay — same gradient mask so it fades at edges */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 12%, rgba(0,0,0,0.75) 88%, rgba(0,0,0,0.3) 100%)',
+        }}
+      />
 
       {/* Content */}
       <motion.div
@@ -33,10 +85,10 @@ export default function AboutSection() {
 
         {/* Description */}
         <div className="max-w-4xl mx-auto space-y-6 md:space-y-8 mb-12 md:mb-16 px-2 md:px-0">
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#ffedd5]/95 leading-relaxed md:leading-loose tracking-normal md:tracking-wide drop-shadow-lg">
+          <p data-para className="text-sm sm:text-base md:text-lg lg:text-xl text-[#ffedd5]/95 leading-relaxed md:leading-loose tracking-normal md:tracking-wide drop-shadow-lg">
             PRAKALP 4.0 is our flagship National-Level Project Exhibition competition organized by IEEE, WIE, and the Project Cell of FR. CRCE. Now in its 4th edition, it provides a massive platform for over 120+ teams from 25+ colleges across India to showcase breakthrough hardware and software innovations to top industry experts.
           </p>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#ffedd5]/90 leading-relaxed md:leading-loose tracking-normal md:tracking-wide drop-shadow-lg">
+          <p data-para className="text-sm sm:text-base md:text-lg lg:text-xl text-[#ffedd5]/90 leading-relaxed md:leading-loose tracking-normal md:tracking-wide drop-shadow-lg">
             Built around the theme &quot;Sankraman&quot; — from idea to impact, PRAKALP focuses on real-world problem-solving, technical excellence, and innovation that creates meaningful change.
           </p>
         </div>
@@ -49,7 +101,7 @@ export default function AboutSection() {
             { number: "₹100K", label: "PRIZE POOL" },
             { number: "4th", label: "EDITION" }
           ].map((stat, index) => (
-            <div key={index} className="text-center p-3 md:p-4 rounded-lg bg-black/20 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.5)] transition-all duration-500">
+            <div data-stat key={index} className="text-center p-3 md:p-4 rounded-lg bg-black/20 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.5)] transition-all duration-500">
               <div
                 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-[#ff6600] tracking-wider drop-shadow-[0_0_20px_rgba(255,102,0,0.7)]"
                 style={{ fontFamily: "'Dune Rise', sans-serif" }}
@@ -64,8 +116,6 @@ export default function AboutSection() {
         </div>
       </motion.div>
 
-      {/* Additional overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 pointer-events-none" />
     </div>
   );
 }

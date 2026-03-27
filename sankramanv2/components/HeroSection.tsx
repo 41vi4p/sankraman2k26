@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { animate } from "animejs";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,6 +21,18 @@ export default function HeroSection() {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const scrollChevronRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!scrollChevronRef.current) return;
+    animate(scrollChevronRef.current, {
+      translateY: [-6, 6],
+      duration: 900,
+      direction: "alternate",
+      loop: true,
+      ease: (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
+    });
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -150,6 +163,7 @@ export default function HeroSection() {
             >
               SANKRAMAN
             </motion.h1>
+
           </motion.div>
         </div>
 
@@ -162,10 +176,35 @@ export default function HeroSection() {
 
 
 
-        {/* Bottom Center Partners */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:bottom-12 z-30 pointer-events-none">
-          <div className="text-xs font-black tracking-[0.4em] uppercase opacity-90 whitespace-nowrap text-white">
-            WIE x PROJECT CELL × IEEE
+        {/* Register CTA + scroll chevrons — above the dune (z-30) */}
+        <div className="absolute bottom-16 md:bottom-20 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3 pointer-events-auto">
+          <a
+            href="#contact"
+            className="neon-btn border-2 border-[#ff6600] bg-black/30 backdrop-blur-sm px-4 sm:px-8 py-2 sm:py-2.5 rounded-lg transition-all duration-500 hover:bg-[#ff6600]/20 group whitespace-nowrap"
+          >
+            <span
+              style={{ fontFamily: "'Dune Rise', sans-serif" }}
+              className="text-[0.6rem] sm:text-xs md:text-sm font-black tracking-[0.12em] sm:tracking-[0.3em] text-[#ff6600] uppercase group-hover:text-[#ffaa00] transition-colors whitespace-nowrap"
+            >
+              REGISTER NOW
+            </span>
+          </a>
+          <div ref={scrollChevronRef} className="flex flex-col items-center opacity-70 pointer-events-none">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M4 7l6 6 6-6" stroke="#ffedd5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" className="opacity-50 -mt-2">
+              <path d="M4 7l6 6 6-6" stroke="#ffedd5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Bottom Center Council Logos */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 md:bottom-8 z-30 pointer-events-none">
+          <div className="flex items-center justify-center gap-6 md:gap-10">
+            <img src="/logos/wie.png" alt="WIE Logo" className="h-10 md:h-12 opacity-100 hover:brightness-110 transition-all duration-300" />
+            <img src="/logos/project_cell.png" alt="Project Cell Logo" className="h-10 md:h-12 opacity-100 hover:brightness-110 transition-all duration-300" />
+            <img src="/logos/ieee.png" alt="IEEE Logo" className="h-10 md:h-12 opacity-100 hover:brightness-110 transition-all duration-300" />
           </div>
         </div>
 

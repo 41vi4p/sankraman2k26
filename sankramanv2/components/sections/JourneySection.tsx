@@ -1,11 +1,44 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { animate, stagger } from "animejs";
 
 export default function JourneySection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Alternate cards from left/right
+            const cards = section.querySelectorAll<HTMLElement>("[data-journey-card]");
+            cards.forEach((card, i) => {
+              const fromX = i % 2 === 0 ? -60 : 60;
+              animate(card, {
+                translateX: [fromX, 0],
+                opacity: [0, 1],
+                duration: 700,
+                delay: i * 160,
+                ease: (t: number) => 1 - Math.pow(1 - t, 3),
+              });
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   // Track scroll within the Timeline block
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -23,11 +56,23 @@ export default function JourneySection() {
   ];
 
   return (
-    <div id="journey" className="relative min-h-screen flex items-center justify-center py-20">
+    <div ref={sectionRef} id="journey" className="relative min-h-screen flex items-center justify-center py-20">
 
-      {/* Dark Glassmorphism Background */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-lg" />
-      <div className="absolute inset-0 bg-linear-to-br from-black/70 via-black/40 to-black/70" />
+      {/* Blur layer — fades at top and bottom */}
+      <div
+        className="absolute inset-0 backdrop-blur-lg pointer-events-none"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)',
+        }}
+      />
+      {/* Dark overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.78) 12%, rgba(0,0,0,0.78) 88%, rgba(0,0,0,0.3) 100%)',
+        }}
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -58,13 +103,13 @@ export default function JourneySection() {
           {/* Active animated progress line */}
           <motion.div 
             style={{ scaleY }}
-            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 md:w-1 bg-[#ff6600] -translate-x-1/2 origin-top drop-shadow-[0_0_20px_rgba(255,102,0,1)] rounded-full z-0" 
+            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 md:w-1 bg-[#ff6600]/70 -translate-x-1/2 origin-top drop-shadow-[0_0_10px_rgba(255,102,0,0.6)] rounded-full z-0" 
           />
 
           {/* Timeline Events */}
           <div className="space-y-12 md:space-y-16">
             {timelineEvents.map((event, index) => (
-              <div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+              <div data-journey-card key={index} className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                 <div className={`w-full pl-10 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:pl-0 md:text-right' : 'md:pl-12'}`}>
                   {/* Event Card with Glassmorphism */}
                   <div className="p-4 md:p-6 rounded-xl bg-black/30 backdrop-blur-sm border border-[#ff6600]/20 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_-10px_rgba(255,102,0,0.4)] transition-all duration-500">
@@ -92,7 +137,6 @@ export default function JourneySection() {
 
       </motion.div>
 
-      <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-black/60 pointer-events-none" />
     </div>
   );
 }
