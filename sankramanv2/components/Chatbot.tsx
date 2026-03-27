@@ -9,16 +9,19 @@ type BotResponse = {
 };
 
 const RULES: { keywords: string[]; response: BotResponse }[] = [
+  /* ── Greetings ──────────────────────────────────────────────────────────── */
   {
     keywords: ["hi", "hello", "hey", "hola", "namaste", "greet"],
     response: {
-      text: "Hey! Welcome to Prakalp 4.0 👋\nI'm PRAKAI — your event assistant.\n\nAsk me anything about registration, venue, rounds, prizes, or contacts!",
+      text: "Hey! Welcome to Prakalp 4.0 👋\nI'm PRAKAI — your event assistant.\n\nAsk me about registration, categories, rounds, fees, rules, prizes, or contacts!",
     },
   },
+
+  /* ── Registration link ──────────────────────────────────────────────────── */
   {
-    keywords: ["register", "sign up", "apply", "unstop", "enrollment", "participate"],
+    keywords: ["register", "sign up", "apply", "unstop", "enrollment", "participate", "registration link"],
     response: {
-      text: "Register for Prakalp 4.0 on Unstop — it's free!\n\nClick below to secure your spot before seats fill up.",
+      text: "Register for Prakalp 4.0 on Unstop!\n\nNote: Registration is open to all UG & diploma engineering students from any recognised college in India.",
       links: [
         {
           label: "Register on Unstop →",
@@ -27,77 +30,173 @@ const RULES: { keywords: string[]; response: BotResponse }[] = [
       ],
     },
   },
+
+  /* ── Registration fee ───────────────────────────────────────────────────── */
   {
-    keywords: ["date", "when", "schedule", "time", "april", "day"],
+    keywords: ["fee", "cost", "price", "paid", "rupee", "₹", "pay", "amount", "snack", "lunch"],
     response: {
-      text: "Prakalp 4.0 is happening on:\n\n📅 18 April 2026 (Saturday)\n📍 FR. CRCE, Bandra, Mumbai",
-    },
-  },
-  {
-    keywords: ["venue", "location", "where", "address", "place", "bandra", "crce", "mumbai", "map"],
-    response: {
-      text: "The event is held at:\n\nFr. Conceicao Rodrigues College of Engineering\nFr. Agnel Ashram, Bandstand Promenade\nBandra West, Mumbai — 400050\n\nNearest station: Bandra",
-      links: [{ label: "📍 Open in Google Maps", url: "https://maps.app.goo.gl/9awrEXbbMHC2w8xM7" }],
-    },
-  },
-  {
-    keywords: ["prize", "money", "award", "win", "cash", "reward", "lakh"],
-    response: {
-      text: "💰 Prakalp 4.0 has a prize pool of ₹1,00,000!\n\nTop teams across categories will be rewarded for their innovation and technical excellence.",
-    },
-  },
-  {
-    keywords: ["brochure", "pdf", "download", "document", "file"],
-    response: {
-      text: "Download our official brochures for full event details:",
+      text: "Registration fees based on team type:\n\n🏫 For FR.CRCE (Internal) Teams:\n  • ₹400/team — Snacks included\n  • ₹600/team — Lunch included\n\n🌐 For External Teams:\n  • ₹600/team — Lunch included\n\n📌 Source: respective brochures",
       links: [
-        { label: "↓ FR.CRCE Teams Brochure", url: "/brouchures/Prakalp_4.0_FRCRCE_Teams_Only_Brochure.pdf", download: true },
+        { label: "↓ Internal Teams Brochure", url: "/brouchures/Prakalp_4.0_FRCRCE_Teams_Only_Brochure.pdf", download: true },
         { label: "↓ External Teams Brochure", url: "/brouchures/Prakalp_4.0_PR_Brochure_External.pdf", download: true },
       ],
     },
   },
+
+  /* ── Date ───────────────────────────────────────────────────────────────── */
   {
-    keywords: ["contact", "reach", "call", "whatsapp", "phone", "number", "head"],
+    keywords: ["date", "when", "schedule", "time", "april", "day"],
     response: {
-      text: "Contact our event heads:\n\n• Aahana Peter (WIE PR)\n  +91 87796 14123\n\n• Pranav Koradiya (Project Cell Co-lead)\n  +91 97692 04570\n\n• Kunal Sarvaiya (IEEE PR)\n  +91 79001 88666",
+      text: "Prakalp 4.0 is happening on:\n\n📅 18 April 2026 (Saturday)\n📍 FR.CRCE, Bandra, Mumbai",
+    },
+  },
+
+  /* ── Venue ──────────────────────────────────────────────────────────────── */
+  {
+    keywords: ["venue", "location", "where", "address", "place", "bandra", "mumbai", "map", "station"],
+    response: {
+      text: "The event is held at:\n\nFr. Conceicao Rodrigues College of Engineering\nFr. Agnel Ashram, Bandstand Promenade\nBandra West, Mumbai — 400050\n\n🚉 Nearest station: Bandra",
+      links: [{ label: "📍 Open in Google Maps", url: "https://maps.app.goo.gl/9awrEXbbMHC2w8xM7" }],
+    },
+  },
+
+  /* ── Prize ──────────────────────────────────────────────────────────────── */
+  {
+    keywords: ["prize", "award", "win", "cash", "reward", "lakh", "winning", "money"],
+    response: {
+      text: "💰 Prize Pool: ₹1,00,000!\n\nTop teams from each track (Hardware, Software, and Sankraman Nova for FR.CRCE first-years) will be rewarded based on performance across all rounds.",
+    },
+  },
+
+  /* ── Categories ─────────────────────────────────────────────────────────── */
+  {
+    keywords: ["categor", "track", "hardware", "software", "nova", "which track", "which category", "type of project"],
+    response: {
+      text: "Prakalp 4.0 has the following competition tracks:\n\n🔧 Hardware Track (All teams)\nPhysical systems, embedded electronics, robotics & automation.\n\n💻 Software Track (All teams)\nWeb/mobile apps, data-driven engineering & algorithmic solutions.\n\n⭐ Sankraman Nova (Internal FR.CRCE teams only)\nExclusively for FR.CRCE First-Year students — can enter both Hardware & Software tracks.\n\n📌 Cross-category switching after registration is not allowed.",
       links: [
-        { label: "WhatsApp Aahana", url: "https://wa.me/918779614123" },
-        { label: "WhatsApp Pranav", url: "https://wa.me/919769204570" },
-        { label: "WhatsApp Kunal", url: "https://wa.me/917900188666" },
+        { label: "↓ Internal Teams Brochure", url: "/brouchures/Prakalp_4.0_FRCRCE_Teams_Only_Brochure.pdf", download: true },
+        { label: "↓ External Teams Brochure", url: "/brouchures/Prakalp_4.0_PR_Brochure_External.pdf", download: true },
       ],
     },
   },
+
+  /* ── Sankraman Nova ─────────────────────────────────────────────────────── */
   {
-    keywords: ["round", "phase", "stage", "format", "process", "submission", "presentation", "ppt", "video"],
+    keywords: ["nova", "first year", "fresher", "freshman", "1st year", "sankraman nova", "fy"],
     response: {
-      text: "Prakalp 4.0 has 3 phases:\n\n🔵 Round 1 — Online Submission\nSubmit a PPT (max 7 slides) + demo video (max 4 min). Top teams shortlisted.\n\n🔵 Round 2 — On-Campus Presentation\nPresent at FR. CRCE: 7 min pitch + 3 min Q&A.\n\n🏆 Final — Evaluation Phase\nFinalists judged by industry experts. Winners crowned!",
+      text: "⭐ Sankraman Nova — For FR.CRCE (Internal) Teams Only\n\nThis special category is exclusively for First-Year FR.CRCE students. Participants can showcase innovative projects in both Hardware and Software tracks.\n\n📌 This category does NOT apply to external teams.",
+      links: [
+        { label: "↓ Internal Teams Brochure", url: "/brouchures/Prakalp_4.0_FRCRCE_Teams_Only_Brochure.pdf", download: true },
+      ],
     },
   },
+
+  /* ── Format / All Rounds ────────────────────────────────────────────────── */
   {
-    keywords: ["team", "member", "size", "group", "how many", "people"],
+    keywords: ["round", "phase", "stage", "format", "process", "how does it work", "structure", "how many round"],
     response: {
-      text: "Prakalp 4.0 hosts 120+ teams from 25+ colleges across India!\n\nFor team size and eligibility details, check the brochure.",
-      links: [{ label: "↓ Download Brochure", url: "/brouchures/Prakalp_4.0_PR_Brochure_External.pdf", download: true }],
+      text: "Prakalp 4.0 runs across 3 rounds (same for all teams):\n\n🔵 Round 1 — Online Submission (via Unstop)\nPPT (max 7 slides, PDF) + Demo Video (max 4 min). Shortlisted within 2 working days.\n\n🔵 Round 2 — In-Person at FR.CRCE\n7 min presentation + 3 min Q&A. Working model/live demo required. Mandatory project pamphlet. Warning at 6 min; beyond 10 min = negative marking.\n\n🏆 Round 3 — Final Showcase\nTop 5 teams per track go to the main stage. Final judging post-lunch. All members must be present. Winners announced at closing ceremony.",
     },
   },
+
+  /* ── Submission details ─────────────────────────────────────────────────── */
   {
-    keywords: ["ieee", "wie", "project cell", "organizer", "organise", "who"],
+    keywords: ["submission", "ppt", "slides", "video", "demo video", "upload", "submit", "file name", "naming", "pdf format"],
     response: {
-      text: "Prakalp 4.0 is co-organised by three powerhouse chapters at FR. CRCE:\n\n⚡ IEEE CRCE — World's largest tech professional org\n👩‍💻 WIE CRCE — IEEE Women in Engineering\n🔧 Project Cell CRCE — Applied engineering hub",
+      text: "📤 Round 1 Submission (applies to all teams):\n\n• PPT: Max 7 slides, must be in PDF format\n• Demo Video: Max 4 minutes\n• Submit via Unstop\n• Late or oversized submissions = disqualified\n• Shortlisted teams notified within 2 working days\n\n📁 File Naming Format:\nTeamName_CollegeName_Category\n(e.g. TeamAlpha_FRCRCE_Hardware)",
     },
   },
+
+  /* ── Round 2 specifics ──────────────────────────────────────────────────── */
   {
-    keywords: ["sankraman", "theme", "concept", "meaning"],
+    keywords: ["round 2", "in-person", "on-campus", "pamphlet", "working model", "live demo", "negative mark", "warning"],
     response: {
-      text: "\"Sankraman\" means Engineering the Transition — the journey from a raw idea to real-world impact.\n\nPrakalp 4.0 celebrates that transition, pushing students to build innovations that matter.",
+      text: "🔵 Round 2 — In-Person Presentation (all teams):\n\n• 7 min presentation + 3 min Q&A\n• Must bring a working model or live demo\n• Max 7 slides allowed\n• Mandatory project pamphlet required\n• Warning given at 6 min mark\n• Going beyond 10 min = negative marking",
     },
   },
+
+  /* ── Round 3 / Final ────────────────────────────────────────────────────── */
   {
-    keywords: ["about", "what is prakalp", "prakalp", "event", "tell me"],
+    keywords: ["round 3", "final round", "main stage", "closing", "winner announced", "top 5"],
     response: {
-      text: "Prakalp 4.0 is a flagship National-Level Project Exhibition organised by IEEE, WIE & Project Cell of FR. CRCE.\n\nNow in its 4th edition, it platforms 120+ teams from 25+ colleges to showcase breakthrough hardware & software innovations to top industry experts.\n\n💰 Prize pool: ₹1,00,000\n📅 Date: 18 April 2026",
+      text: "🏆 Round 3 — Final Showcase (all teams):\n\n• Top 5 shortlisted teams from each track advance\n• Final judging is conducted post-lunch\n• All team members must be present\n• Judges may ask additional questions\n• Winners announced at the closing prize ceremony",
     },
   },
+
+  /* ── Judging criteria ───────────────────────────────────────────────────── */
+  {
+    keywords: ["judg", "criteria", "evaluat", "assess", "score", "mark", "parameter", "how judged"],
+    response: {
+      text: "📊 Judging Criteria (same for all teams & tracks):\n\n🔵 Round 1 — PPT & Video:\n• Clarity & structure of PPT\n• Innovation & novelty\n• Category relevance & feasibility\n• Demo video quality\n\n🔵 Round 2 — In-Person:\n• Working model completeness\n• Technical depth & clarity\n• Innovation, Q&A handling\n• Problem-solving approach\n\n🏆 Round 3 — Final:\n• Overall impact & innovation\n• Real-world scalability\n• Presentation quality\n• Confidence & teamwork\n• Judges' overall assessment",
+    },
+  },
+
+  /* ── Rules / Eligibility ────────────────────────────────────────────────── */
+  {
+    keywords: ["rule", "regulation", "eligib", "allowed", "disqualif", "plagiar", "guideline", "policy", "id", "identity"],
+    response: {
+      text: "📋 Rules & Regulations (applies to all teams):\n\n✅ Eligibility:\n• Open to all UG & diploma engineering students from any recognised college in India\n• Team size: 2–4 members from the same college\n• One student can only be part of one team\n\n🚫 Project Guidelines:\n• Projects must be original — plagiarism = immediate disqualification\n• Must match the registered category; cross-category not allowed\n• Hazardous working models require prior written approval\n\n📌 During the Event:\n• Carry valid college ID + government-issued photo ID\n• Report to registration desk on arrival\n• Fabricated results or misrepresentation = disqualification\n• All disputes resolved at organizers' discretion — decision is final",
+    },
+  },
+
+  /* ── Team size ──────────────────────────────────────────────────────────── */
+  {
+    keywords: ["team size", "how many members", "member", "group size", "same college", "who can", "diploma", "ug", "undergraduate"],
+    response: {
+      text: "👥 Team & Eligibility (all teams):\n\n• Team size: 2 to 4 members\n• All members must be from the same college\n• Open to UG & diploma engineering students from any recognised college in India\n• One student can only be in one team\n\n📌 FR.CRCE first-year students can also register under Sankraman Nova (internal teams only)",
+    },
+  },
+
+  /* ── Brochures ──────────────────────────────────────────────────────────── */
+  {
+    keywords: ["brochure", "pdf", "download", "document"],
+    response: {
+      text: "📄 Download the right brochure for your team:\n\n🏫 FR.CRCE Internal Teams Brochure:\nIncludes Sankraman Nova category + ₹400 fee option with snacks\n\n🌐 External Teams Brochure:\nFor students from colleges other than FR.CRCE — ₹600/team with lunch",
+      links: [
+        { label: "↓ FR.CRCE (Internal) Teams Brochure", url: "/brouchures/Prakalp_4.0_FRCRCE_Teams_Only_Brochure.pdf", download: true },
+        { label: "↓ External Teams Brochure", url: "/brouchures/Prakalp_4.0_PR_Brochure_External.pdf", download: true },
+      ],
+    },
+  },
+
+  /* ── Contact ────────────────────────────────────────────────────────────── */
+  {
+    keywords: ["contact", "reach", "call", "whatsapp", "phone", "number", "head", "pr team"],
+    response: {
+      text: "📞 Contact our event heads:\n\n• Kunal Sarvaiya (IEEE PR Head)\n  +91 79001 88666\n\n• Aahana Peter (WIE PR Head)\n  +91 87796 14123\n\n• Pranav Koradiya (Project Cell Co-lead)\n  +91 97692 04570",
+      links: [
+        { label: "WhatsApp Kunal", url: "https://wa.me/917900188666" },
+        { label: "WhatsApp Aahana", url: "https://wa.me/918779614123" },
+        { label: "WhatsApp Pranav", url: "https://wa.me/919769204570" },
+      ],
+    },
+  },
+
+  /* ── Organisers / About CRCE ────────────────────────────────────────────── */
+  {
+    keywords: ["ieee", "wie", "project cell", "organizer", "organis", "who organis", "crce", "rodrigues", "naac", "nba"],
+    response: {
+      text: "Prakalp 4.0 is co-organised by 3 chapters at FR.CRCE:\n\n⚡ IEEE CRCE — One of Bombay Section's oldest student chapters (est. 1995), bridging industry & academia.\n\n👩‍💻 WIE CRCE — IEEE Women in Engineering, empowering women through technical excellence & leadership.\n\n🔧 Project Cell CRCE — FR.CRCE's innovation council fostering real-world project experience.\n\n🏛 FR.CRCE: NAAC 'A' grade · NBA accredited · Premier autonomous institute in Mumbai",
+    },
+  },
+
+  /* ── About / overview ───────────────────────────────────────────────────── */
+  {
+    keywords: ["about", "what is prakalp", "prakalp", "tell me", "overview", "event"],
+    response: {
+      text: "Prakalp 4.0 is a flagship National-Level Project Exhibition organised by IEEE, WIE & Project Cell of FR.CRCE.\n\nTheme: \"Sankraman\" — Engineering the Transition\n\n• 120+ teams · 25+ colleges across India\n• Tracks: Hardware, Software, Sankraman Nova (internal)\n• 💰 Prize pool: ₹1,00,000\n• 📅 18 April 2026 · FR.CRCE, Bandra, Mumbai",
+    },
+  },
+
+  /* ── Sankraman theme ────────────────────────────────────────────────────── */
+  {
+    keywords: ["sankraman", "theme", "concept", "meaning", "transition"],
+    response: {
+      text: "\"Sankraman\" means Engineering the Transition — the journey from a raw idea to real-world impact.\n\nPrakalp 4.0 celebrates that shift, pushing students to build innovations that create meaningful, lasting change.",
+    },
+  },
+
+  /* ── Social ─────────────────────────────────────────────────────────────── */
   {
     keywords: ["instagram", "social", "follow", "insta"],
     response: {
@@ -107,14 +206,14 @@ const RULES: { keywords: string[]; response: BotResponse }[] = [
   {
     keywords: ["email", "mail", "gmail"],
     response: {
-      text: "Reach us by email:\n\n✉ ieeece.24@gmail.com (IEEE)\n✉ wieieee.21@gmail.com (WIE)\n✉ projectcellcrce2024@gmail.com (Project Cell)",
+      text: "Reach us by email:\n\n✉ ieeecrce.24@gmail.com (IEEE)\n✉ wieieee.21@gmail.com (WIE)\n✉ projectcellcrce2024@gmail.com (Project Cell)",
     },
   },
+
+  /* ── Pleasantries ───────────────────────────────────────────────────────── */
   {
-    keywords: ["thank", "thanks", "ty", "great", "awesome", "cool"],
-    response: {
-      text: "You're welcome! 🙌 Feel free to ask anything else. See you at Prakalp 4.0! 🏆",
-    },
+    keywords: ["thank", "thanks", "ty", "great", "awesome", "cool", "helpful"],
+    response: { text: "You're welcome! 🙌 Feel free to ask anything else. See you at Prakalp 4.0! 🏆" },
   },
   {
     keywords: ["bye", "goodbye", "later", "cya"],
@@ -128,7 +227,7 @@ function getBotResponse(input: string): BotResponse {
     if (rule.keywords.some((k) => q.includes(k))) return rule.response;
   }
   return {
-    text: "I don't have an answer for that just yet!\n\nFor anything specific, reach out to our PR team directly:\n\n📞 Aahana Peter (WIE PR)\n+91 87796 14123",
+    text: "I don't have an answer for that just yet!\n\nFor anything specific, reach out to our PR team directly:\n\n📞 Aahana Peter (WIE PR Head)\n+91 87796 14123",
     links: [{ label: "WhatsApp Aahana →", url: "https://wa.me/918779614123" }],
   };
 }
@@ -136,10 +235,10 @@ function getBotResponse(input: string): BotResponse {
 /* ─── Suggested quick questions ────────────────────────────────────────────── */
 const SUGGESTIONS = [
   "How to register?",
-  "Event date & venue",
-  "Prize pool",
+  "Registration fee",
+  "Event categories",
   "Event rounds",
-  "Contact heads",
+  "Rules & eligibility",
   "Download brochure",
 ];
 
