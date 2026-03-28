@@ -177,13 +177,9 @@ export default function ContactSection() {
             <div className="grid grid-cols-2 gap-3 mb-4 text-[0.65rem] sm:text-xs">
               <div className="bg-black/40 backdrop-blur-sm border border-[#ff6600]/10 p-2 rounded">
                 <div className="text-[#ff6600] text-[0.55rem] uppercase font-black tracking-[0.2em] mb-1">Date</div>
-                <div className="text-[#ffedd5]/90 font-semibold">18 April 2026</div>
+                <div className="text-[#ffedd5]/90 font-semibold">18 April 2026, Saturday</div>
               </div>
               <div className="bg-black/40 backdrop-blur-sm border border-[#ff6600]/10 p-2 rounded">
-                <div className="text-[#ff6600] text-[0.55rem] uppercase font-black tracking-[0.2em] mb-1">Day</div>
-                <div className="text-[#ffedd5]/90 font-semibold">Saturday</div>
-              </div>
-              <div className="col-span-2 bg-black/40 backdrop-blur-sm border border-[#ff6600]/10 p-2 rounded">
                 <div className="text-[#ff6600] text-[0.55rem] uppercase font-black tracking-[0.2em] mb-1">Station</div>
                 <div className="text-[#ffedd5]/90 font-semibold">Nearest: Bandra</div>
               </div>

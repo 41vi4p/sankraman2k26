@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Prakalp 4.0 - National Level Project Exhibition | FR CRCE",
-  description: "Prakalp 4.0 is FR CRCE's flagship National-Level Project Exhibition competition organized by IEEE, WIE, and Project Cell. Join 120+ teams from 25+ colleges in showcasing breakthrough hardware and software innovations with ₹100K prize pool.",
+  description: "Prakalp 4.0 is FR CRCE's flagship National-Level Project Exhibition competition organized by Project Cell, WIE, and IEEE. Join 120+ teams from 25+ colleges in showcasing breakthrough hardware and software innovations with ₹100K prize pool.",
   icons: {
     icon: "/favicon.ico",
   },
