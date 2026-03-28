@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaWhatsapp, FaDownload, FaCheck, FaSpinner } from "react-icons/fa";
+import { FaWhatsapp, FaDownload, FaCheck, FaSpinner, FaCopy } from "react-icons/fa";
 import { useState, useCallback } from "react";
 
 type DlState = "idle" | "downloading" | "done";
@@ -9,10 +9,18 @@ type DlState = "idle" | "downloading" | "done";
 export default function ContactSection() {
   const [dlInternal, setDlInternal] = useState<DlState>("idle");
   const [dlExternal, setDlExternal] = useState<DlState>("idle");
+  const [copiedPhone, setCopiedPhone] = useState<string | null>(null);
 
   const handleDownload = useCallback((setter: (s: DlState) => void) => {
     setter("downloading");
     setTimeout(() => setter("done"), 2000);
+  }, []);
+
+  const copyPhone = useCallback((number: string, display: string) => {
+    navigator.clipboard.writeText(number).then(() => {
+      setCopiedPhone(display);
+      setTimeout(() => setCopiedPhone(null), 2000);
+    });
   }, []);
 
   return (
@@ -176,8 +184,8 @@ export default function ContactSection() {
                 <div className="text-[#ffedd5]/90 font-semibold">18 April 2026, Saturday</div>
               </div>
               <div className="bg-black/40 backdrop-blur-sm border border-[#ff6600]/10 p-2 rounded">
-                <div className="text-[#ff6600] text-[0.55rem] uppercase font-black tracking-[0.2em] mb-1">Station</div>
-                <div className="text-[#ffedd5]/90 font-semibold">Nearest: Bandra</div>
+                <div className="text-[#ff6600] text-[0.55rem] uppercase font-black tracking-[0.2em] mb-1">Nearest Station</div>
+                <div className="text-[#ffedd5]/90 font-semibold">Bandra</div>
               </div>
             </div>
 
@@ -205,7 +213,18 @@ export default function ContactSection() {
                   <span className="text-[#ff6600] text-[0.5rem] sm:text-[0.65rem]">WIE PR</span>
                 </div>
                 <div className="flex items-center gap-3 mt-2 sm:mt-0 ml-auto">
-                  <span className="font-mono text-[0.7rem] sm:text-xs">+91 87796 14123</span>
+                  <button
+                    onClick={() => copyPhone("+918779614123", "+91 87796 14123")}
+                    className="flex items-center gap-1.5 font-mono text-[0.7rem] sm:text-xs text-[#ffedd5]/90 hover:text-[#ffaa00] transition-colors cursor-pointer"
+                    title="Copy number"
+                  >
+                    {copiedPhone === "+91 87796 14123" ? (
+                      <FaCheck size={10} className="text-green-400 shrink-0" />
+                    ) : (
+                      <FaCopy size={10} className="shrink-0 opacity-50" />
+                    )}
+                    {copiedPhone === "+91 87796 14123" ? "Copied!" : "+91 87796 14123"}
+                  </button>
                   <a href="https://wa.me/918779614123" target="_blank" rel="noopener noreferrer" className="text-[#ff6600] hover:text-[#ffaa00] transition-colors shrink-0">
                     <FaWhatsapp size={16} />
                   </a>
@@ -217,7 +236,18 @@ export default function ContactSection() {
                   <span className="text-[#ff6600] text-[0.5rem] sm:text-[0.65rem]">Project Cell Co-lead</span>
                 </div>
                 <div className="flex items-center gap-3 mt-2 sm:mt-0 ml-auto">
-                  <span className="font-mono text-[0.7rem] sm:text-xs">+91 97692 04570</span>
+                  <button
+                    onClick={() => copyPhone("+919769204570", "+91 97692 04570")}
+                    className="flex items-center gap-1.5 font-mono text-[0.7rem] sm:text-xs text-[#ffedd5]/90 hover:text-[#ffaa00] transition-colors cursor-pointer"
+                    title="Copy number"
+                  >
+                    {copiedPhone === "+91 97692 04570" ? (
+                      <FaCheck size={10} className="text-green-400 shrink-0" />
+                    ) : (
+                      <FaCopy size={10} className="shrink-0 opacity-50" />
+                    )}
+                    {copiedPhone === "+91 97692 04570" ? "Copied!" : "+91 97692 04570"}
+                  </button>
                   <a href="https://wa.me/919769204570" target="_blank" rel="noopener noreferrer" className="text-[#ff6600] hover:text-[#ffaa00] transition-colors shrink-0">
                     <FaWhatsapp size={16} />
                   </a>
@@ -229,7 +259,18 @@ export default function ContactSection() {
                   <span className="text-[#ff6600] text-[0.5rem] sm:text-[0.65rem]">IEEE PR</span>
                 </div>
                 <div className="flex items-center gap-3 mt-2 sm:mt-0 ml-auto">
-                  <span className="font-mono text-[0.7rem] sm:text-xs">+91 79001 88666</span>
+                  <button
+                    onClick={() => copyPhone("+917900188666", "+91 79001 88666")}
+                    className="flex items-center gap-1.5 font-mono text-[0.7rem] sm:text-xs text-[#ffedd5]/90 hover:text-[#ffaa00] transition-colors cursor-pointer"
+                    title="Copy number"
+                  >
+                    {copiedPhone === "+91 79001 88666" ? (
+                      <FaCheck size={10} className="text-green-400 shrink-0" />
+                    ) : (
+                      <FaCopy size={10} className="shrink-0 opacity-50" />
+                    )}
+                    {copiedPhone === "+91 79001 88666" ? "Copied!" : "+91 79001 88666"}
+                  </button>
                   <a href="https://wa.me/919700188666" target="_blank" rel="noopener noreferrer" className="text-[#ff6600] hover:text-[#ffaa00] transition-colors shrink-0">
                     <FaWhatsapp size={16} />
                   </a>
